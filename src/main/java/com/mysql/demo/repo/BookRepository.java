@@ -9,5 +9,6 @@ import com.mysql.demo.models.Book;
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
 	public List<Book> findBybookName(String bookName);
+	
 
 }

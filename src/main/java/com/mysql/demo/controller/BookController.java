@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,16 @@ public class BookController {
 	@ApiOperation(value="Return the book by the book name" , response = Book.class)
 	public List<Book> getBooks(@RequestParam String bookName) {
 		return repository.findBybookName(bookName);
+	}
+	
+	@PutMapping(value= "/updateBookById")
+	@ApiOperation(value="Book updated success fully" , response = String.class)
+	public String updateBookById(@RequestParam Long id, @RequestBody Book book) {
+		Book bk = repository.findById(id).get();
+		bk.setBookAuthor(book.getBookAuthor());
+		bk.setBookName(book.getBookName());
+		repository.save(bk);
+		return "Book updated successfully";
 	}
 	
 	@DeleteMapping(value="/deleteById")
