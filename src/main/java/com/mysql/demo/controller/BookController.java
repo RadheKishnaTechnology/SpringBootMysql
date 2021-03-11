@@ -35,7 +35,7 @@ public class BookController {
 	}
 	
 	@PostMapping(value = "/saveAllBooks")
-	@ApiOperation(value = "This API will insert all the given book object into the database", 
+	@ApiOperation(value = "This API will insert all the given books into the database", 
 	response = Object.class)
 	public String insertAllBooks(@RequestBody List<Book> books) {
 		repository.saveAll(books);
